@@ -3,6 +3,7 @@ var express = require("express");
 const helmet = require("helmet");
 var fs = require("fs");
 var path = require("path");
+const cors = require("cors");
 
 // Common Imports
 const database = require("./Middleware/Database.middleware");
@@ -16,6 +17,7 @@ var port = process.env.PORT || 4001;
 
 // App Middlewares
 app.use(helmet());
+app.use(cors());
 app.use(database);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

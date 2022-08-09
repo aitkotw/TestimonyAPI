@@ -24,7 +24,7 @@ const getAllTestimony = async (req, res, next) => {
 // DESC => Add New Testimony
 // Request => POST /api/testimony
 const addNewTestimony = async (req, res, next) => {
-  bodyDataKey = ["name", "post", "discription"];
+  bodyDataKey = ["name", "post", "description"];
   bodyDataKey.forEach((key) => {
     isEmpty(req.body[key])
       ? res.status(400).json({ [key]: `${key} field is required` })
@@ -35,7 +35,7 @@ const addNewTestimony = async (req, res, next) => {
     const newTestimony = new Testimony({
       name: req.body.name,
       post: req.body.post,
-      discription: req.body.discription,
+      description: req.body.description,
       photo: req.file.filename,
     });
 
@@ -63,8 +63,8 @@ const updateOneTestimony = async (req, res, next) => {
     const updatedTestimony = {};
     !isEmpty(req.body.name) ? (updatedTestimony.name = req.body.name) : null;
     !isEmpty(req.body.post) ? (updatedTestimony.post = req.body.post) : null;
-    !isEmpty(req.body.discription)
-      ? (updatedTestimony.discription = req.body.discription)
+    !isEmpty(req.body.description)
+      ? (updatedTestimony.description = req.body.description)
       : null;
     console.log(updatedTestimony);
     const result = await Testimony.findOneAndUpdate(
